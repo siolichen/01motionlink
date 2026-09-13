@@ -326,7 +326,7 @@
   <section data-screen-label="Why Motion Link" style="padding: clamp(64px, 9vw, 128px) clamp(20px, 5vw, 72px); background: #ffffff;">
     <div style="max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(40px, 5vw, 80px); align-items: center;">
 
-      <div id="ml-why-graphic" style="padding: 30% 2% 10% 6%;">
+      <div id="ml-why-graphic" style="padding: 46% 2% 8% 6%;">
         <div style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
           <div style="position: absolute; top: -15%; left: 9%; width: 104%; height: 104%; border-radius: 50%; border: 1px solid #e8ebed;"></div>
           <div style="position: absolute; top: -15%; left: 9%; width: 104%; height: 104%; border-radius: 50%; border: 1px dashed #cdd5da; animation: ml-orbit 70s linear infinite;"></div>
@@ -528,47 +528,50 @@ class Component extends DCLogic {
     wrap.style.transform = '';
     wrap.style.marginBottom = '';
     if (!stack) return;
-    // desktop-equivalent sizing, then uniform fit to the available width
-    kids.forEach(c => {
-      const n = c.querySelector('[data-reveal="node"]');
-      if (!n) return;
-      n.style.width = '104px';
-      const ic = n.querySelector('span');
-      if (ic) { ic.style.width = '72px'; ic.style.height = '72px'; }
-      const ps = n.querySelectorAll('p');
-      if (ps[0]) ps[0].style.fontSize = '17px';
-      if (ps[1]) ps[1].style.fontSize = '14px';
-    });
     const BASE = 620;
     const avail = holder ? holder.clientWidth : wrap.clientWidth;
     if (!avail) return;
     wrap.style.width = BASE + 'px';
-    const wr = wrap.getBoundingClientRect();
-    let minL = 0, maxR = wr.width;
-    kids.forEach(c => {
-      const n = c.querySelector('[data-reveal="node"]');
-      const el = n || c;
-      const r = el.getBoundingClientRect();
-      if (!r.width) return;
-      minL = Math.min(minL, r.left - wr.left);
-      maxR = Math.max(maxR, r.right - wr.left);
-    });
-    const contentW = maxR - minL;
-    let maxB = 0;
-    kids.forEach(c => {
-      const n = c.querySelector('[data-reveal="node"]');
-      const el = n || c;
-      const r = el.getBoundingClientRect();
-      if (!r.width) return;
-      maxB = Math.max(maxB, r.bottom - wr.top);
-    });
+    wrap.style.transform = '';
+    const setSizes = (nodeW, icon, t1, t2) => {
+      kids.forEach(c => {
+        const n = c.querySelector('[data-reveal="node"]');
+        if (!n) return;
+        n.style.width = nodeW + 'px';
+        const ic = n.querySelector('span');
+        if (ic) { ic.style.width = icon + 'px'; ic.style.height = icon + 'px'; }
+        const ps = n.querySelectorAll('p');
+        if (ps[0]) ps[0].style.fontSize = t1 + 'px';
+        if (ps[1]) ps[1].style.fontSize = t2 + 'px';
+      });
+    };
+    const measure = () => {
+      const wr = wrap.getBoundingClientRect();
+      let minL = 0, maxR = wr.width, maxB = 0;
+      kids.forEach(c => {
+        const n = c.querySelector('[data-reveal="node"]');
+        const el = n || c;
+        const r = el.getBoundingClientRect();
+        if (!r.width) return;
+        minL = Math.min(minL, r.left - wr.left);
+        maxR = Math.max(maxR, r.right - wr.left);
+        maxB = Math.max(maxB, r.bottom - wr.top);
+      });
+      return { minL: minL, contentW: maxR - minL, maxB: maxB };
+    };
+    // first pass at reference sizing to learn the scale, then compensate type so it lands ~14px
+    setSizes(104, 72, 17, 14);
+    let m = measure();
+    let k = Math.min(1, avail / m.contentW);
+    const comp = Math.min(3.2, 1 / Math.max(k, 0.2));
+    setSizes(Math.round(100 * comp), Math.round(66 * comp), Math.round(18 * comp), Math.round(15.5 * comp));
+    m = measure();
+    k = Math.min(1, avail / m.contentW);
     const natural = wrap.offsetHeight;
-    const k = Math.min(1, avail / contentW);
-    const offX = (avail - contentW * k) / 2 - minL * k;
+    const offX = (avail - m.contentW * k) / 2 - m.minL * k;
     wrap.style.transformOrigin = 'top left';
     wrap.style.transform = 'translateX(' + offX + 'px) scale(' + k + ')';
-    const usedH = (maxB || natural) * k + 8;
-    wrap.style.marginBottom = (usedH - natural) + 'px';
+    wrap.style.marginBottom = (((m.maxB || natural) * k + 8) - natural) + 'px';
   }
   _initReveal() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
