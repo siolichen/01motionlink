@@ -23,6 +23,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&amp;family=Barlow:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
 <style>
+  /* ml-single-col */
+  @media (max-width: 900px) {
+    main div[style*="auto-fit"] { grid-template-columns: minmax(0, 1fr) !important; align-items: start !important; }
+  }
   /* ml-mobile-fit */
   @media (max-width: 900px) {
     header, main, footer { max-width: 100%; }
@@ -239,7 +243,7 @@
     <div style="max-width: 1320px; margin: 0 auto; padding: clamp(64px, 9vw, 128px) clamp(20px, 5vw, 72px); display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(36px, 5vw, 72px); align-items: center;">
       <div>
         <p style="margin: 0 0 18px; font-family: Barlow, sans-serif; font-size: 13px; letter-spacing: 0.3em; color: #ee6a1e; font-weight: 600;">SELECTION SUPPORT｜選型支援</p>
-        <h2 style="margin: 0 0 30px; font-size: clamp(24px, 3.2vw, 38px); line-height: 1.5; font-weight: 700; letter-spacing: 0.01em; text-wrap: pretty;">「我知道設備要怎麼動，<br />但不知道該選哪一顆。」</h2>
+        <h2 style="margin: 0 0 30px; font-size: clamp(24px, 3.2vw, 38px); line-height: 1.5; font-weight: 700; letter-spacing: 0.01em; text-wrap: pretty;">我知道設備要怎麼動，<br />但不知道該選哪一顆。</h2>
         <p style="margin: 0 0 24px; font-size: 16px; line-height: 2.05; color: #4a555e;">這可能是我們最常收到的問題。</p>
         <p style="margin: 0 0 24px; font-size: 16px; line-height: 2.05; color: #4a555e;">選馬達與減速機，不只是看功率夠不夠。<br />負載、轉速、扭矩、減速比、慣量與安裝空間，都可能影響最後的選擇。</p>
         <p style="margin: 0 0 38px; font-size: 16px; line-height: 2.05; color: #4a555e;">你不需要先把所有型號研究完。<br />提供設備條件、圖面或目前使用的型號，<br />我們協助你縮小選擇、確認規格與搭配。</p>
@@ -317,7 +321,7 @@
   <section data-screen-label="Why Motion Link" style="padding: clamp(64px, 9vw, 128px) clamp(20px, 5vw, 72px); background: #ffffff;">
     <div style="max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(40px, 5vw, 80px); align-items: center;">
 
-      <div id="ml-why-graphic" style="padding: 13% 6% 17% 14%;">
+      <div id="ml-why-graphic" style="padding: 20% 4% 12% 12%;">
         <div style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
           <div style="position: absolute; top: -15%; left: 9%; width: 104%; height: 104%; border-radius: 50%; border: 1px solid #e8ebed;"></div>
           <div style="position: absolute; top: -15%; left: 9%; width: 104%; height: 104%; border-radius: 50%; border: 1px dashed #cdd5da; animation: ml-orbit 70s linear infinite;"></div>
@@ -385,7 +389,7 @@
       <div>
         <p style="margin: 0 0 18px; font-family: Barlow, sans-serif; font-size: 13px; letter-spacing: 0.3em; color: #ee6a1e; font-weight: 600;">ABOUT｜關於動聯</p>
         <h2 style="margin: 0 0 30px; font-size: clamp(24px, 3.2vw, 38px); line-height: 1.5; font-weight: 700; text-wrap: pretty;">少一點產品，<br />多一點真正適合的選擇。</h2>
-        <p style="margin: 0 0 24px; font-size: 16px; line-height: 2.05; color: #4a555e;"><strong style="color: #12181d; font-weight: 700;">MOTION LINK 動聯國際有限公司</strong>專注於工業自動化的動力與傳動元件代理。</p>
+        <p style="margin: 0 0 24px; font-size: 16px; line-height: 2.05; color: #4a555e;">MOTION LINK 動聯國際有限公司專注於工業自動化的動力與傳動元件代理。</p>
         <p style="margin: 0 0 24px; font-size: 16px; line-height: 2.05; color: #4a555e;">我們不希望成為產品最多的工控供應商。</p>
         <p style="margin: 0 0 24px; font-size: 16px; line-height: 2.05; color: #4a555e;">相較於把整本型錄交給客戶，我們更在意的是理解設備條件，再從合作品牌中找到真正適合的產品。</p>
         <p style="margin: 0 0 38px; font-size: 16px; line-height: 2.05; color: #4a555e;">從新設備開發、既有型號替換，到馬達與減速機搭配，<br />讓工程師與採購少花一點時間找料，把時間留給設備本身。</p>
@@ -523,7 +527,7 @@ class Component extends DCLogic {
     kids.forEach(c => {
       const n = c.querySelector('[data-reveal="node"]');
       if (!n) return;
-      n.style.width = '152px';
+      n.style.width = '118px';
       const ic = n.querySelector('span');
       if (ic) { ic.style.width = '72px'; ic.style.height = '72px'; }
       const ps = n.querySelectorAll('p');
