@@ -188,9 +188,7 @@
         <p data-reveal="1" style="margin: 0 0 22px; font-family: Barlow, sans-serif; font-size: clamp(17px, 1.9vw, 23px); letter-spacing: 0.22em; color: #ffffff; font-weight: 700;">MOTION LINK｜動聯國際</p>
         <h1 data-reveal="2" style="margin: 0 0 24px; font-size: clamp(28px, 4.6vw, 56px); line-height: 1.32; font-weight: 900; letter-spacing: 0.01em; color: #ffffff; text-wrap: pretty;">設備需要的動力，<br />我們幫你選對、配對、找得到。</h1>
         <p data-reveal="3" style="margin: 0 0 26px; font-size: clamp(15px, 1.6vw, 19px); line-height: 1.8; color: #ffffff; font-weight: 700;">專業代理｜伺服馬達・精密減速機・伺服驅動器</p>
-        <p data-reveal="4" style="margin: 0 0 6px; font-size: clamp(15px, 1.5vw, 18px); line-height: 2; color: #e3e7ea;">從新機開發到既有型號替換，</p>
-        <p data-reveal="5" style="margin: 0 0 6px; font-size: clamp(15px, 1.5vw, 18px); line-height: 2; color: #e3e7ea;">依功率、轉速、扭矩與設備條件協助選型，</p>
-        <p data-reveal="6" style="margin: 0 0 40px; font-size: clamp(15px, 1.5vw, 18px); line-height: 2; color: #e3e7ea;">整合值得信賴的自動化品牌與穩定供應。</p>
+        <p data-reveal="4" style="margin: 0 0 40px; font-size: clamp(15px, 1.5vw, 18px); line-height: 2; color: #e3e7ea;">從新機開發到既有型號替換，<br />依功率、轉速、扭矩與設備條件協助選型，<br />整合值得信賴的自動化品牌與穩定供應。</p>
         <a data-reveal="7" href="#contact" style="display: inline-flex; align-items: center; gap: 12px; min-height: 56px; padding: 0 32px; background: #ee6a1e; color: #ffffff; font-size: 16px; font-weight: 700; letter-spacing: 0.06em;" style-hover="background:#ffffff;color:#10406e;transform:scale(1.05)">填需求，協助我選型</a>
       </div>
     </div>
@@ -518,15 +516,36 @@ class Component extends DCLogic {
     wrap.style.transform = '';
     wrap.style.marginBottom = '';
     if (!stack) return;
-    // shrink the whole desktop composition uniformly so it always fits
+    // desktop-equivalent sizing, then uniform fit to the available width
+    kids.forEach(c => {
+      const n = c.querySelector('[data-reveal="node"]');
+      if (!n) return;
+      n.style.width = '152px';
+      const ic = n.querySelector('span');
+      if (ic) { ic.style.width = '72px'; ic.style.height = '72px'; }
+      const ps = n.querySelectorAll('p');
+      if (ps[0]) ps[0].style.fontSize = '17px';
+      if (ps[1]) ps[1].style.fontSize = '14px';
+    });
     const BASE = 620;
     const avail = holder ? holder.clientWidth : wrap.clientWidth;
     if (!avail) return;
     wrap.style.width = BASE + 'px';
+    const wr = wrap.getBoundingClientRect();
+    let minL = 0, maxR = wr.width;
+    kids.forEach(c => {
+      const n = c.querySelector('[data-reveal="node"]');
+      const el = n || c;
+      const r = el.getBoundingClientRect();
+      if (!r.width) return;
+      minL = Math.min(minL, r.left - wr.left);
+      maxR = Math.max(maxR, r.right - wr.left);
+    });
+    const contentW = maxR - minL;
     const natural = wrap.offsetHeight;
-    const k = Math.min(1, avail / BASE);
+    const k = Math.min(1, avail / contentW);
     wrap.style.transformOrigin = 'top left';
-    wrap.style.transform = 'scale(' + k + ')';
+    wrap.style.transform = 'scale(' + k + ') translateX(' + (-minL) + 'px)';
     wrap.style.marginBottom = (-(natural * (1 - k))) + 'px';
   }
   _initReveal() {
