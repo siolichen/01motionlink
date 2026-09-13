@@ -23,8 +23,17 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&amp;family=Barlow:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
 <style>
-  /* ml-mobile-width */
-  @media (max-width: 640px) { main div, main p, main h1, main h2, main h3, main form, main fieldset { max-width: none; } }
+  /* ml-mobile-fit */
+  @media (max-width: 900px) {
+    header, main, footer { max-width: 100%; }
+    main section, main section > div, main div, main form, main fieldset, main label, footer div {
+      max-width: 100%; min-width: 0; box-sizing: border-box;
+    }
+    main p, main h1, main h2, main h3, main li, main span, main label, main legend, main a, footer p, footer a {
+      max-width: 100%; overflow-wrap: anywhere; word-break: break-word; white-space: normal;
+    }
+    main input, main textarea, main select { max-width: 100%; box-sizing: border-box; }
+  }
   /* ml-br-guard */
   @media (max-width: 640px) { h1 br, h2 br, h3 br, p br { display: none; } h1, h2, h3, p, li { text-wrap: pretty; word-break: normal; line-break: strict; } }
   /* ml-overflow-guard */
@@ -504,14 +513,24 @@ class Component extends DCLogic {
     kids.forEach((c, i) => {
       if (this._whyOrig.kids[i] != null) c.setAttribute('style', this._whyOrig.kids[i]);
       const n = c.querySelector('[data-reveal="node"]');
-      if (n) { n.style.width = stack ? 'min(34vw, 170px)' : ''; n.style.textAlign = ''; }
+      if (n) { n.style.width = ''; n.style.textAlign = ''; }
       c.style.display = '';
     });
-    if (stack) wrap.style.padding = '10% 18% 32% 18%';
-    const grid = wrap.parentElement;
-    if (grid) grid.style.gridTemplateColumns = stack ? 'minmax(0, 1fr)' : 'repeat(auto-fit, minmax(320px, 1fr))';
-    const sec = wrap.closest ? wrap.closest('section') : null;
-    if (sec) sec.style.overflowX = 'hidden';
+    const holder = wrap.parentElement;
+    if (holder) holder.style.gridTemplateColumns = stack ? 'minmax(0, 1fr)' : 'repeat(auto-fit, minmax(320px, 1fr))';
+    wrap.style.transform = '';
+    wrap.style.marginBottom = '';
+    if (!stack) return;
+    // shrink the whole desktop composition uniformly so it always fits
+    const BASE = 620;
+    const avail = holder ? holder.clientWidth : wrap.clientWidth;
+    if (!avail) return;
+    wrap.style.width = BASE + 'px';
+    const natural = wrap.offsetHeight;
+    const k = Math.min(1, avail / BASE);
+    wrap.style.transformOrigin = 'top left';
+    wrap.style.transform = 'scale(' + k + ')';
+    wrap.style.marginBottom = (-(natural * (1 - k))) + 'px';
   }
   _initReveal() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
