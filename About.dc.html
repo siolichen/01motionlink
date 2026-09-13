@@ -23,6 +23,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&amp;family=Barlow:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
 <style>
+  /* ml-mobile-width */
+  @media (max-width: 640px) { main div, main p, main h1, main h2, main h3, main form, main fieldset { max-width: none; } }
   /* ml-br-guard */
   @media (max-width: 640px) { h1 br, h2 br, h3 br, p br { display: none; } h1, h2, h3, p, li { text-wrap: pretty; word-break: normal; line-break: strict; } }
   /* ml-overflow-guard */
@@ -135,7 +137,7 @@
       <span style="font-size: 17px; font-weight: 700;">產品</span>
       <span style="font-family: Barlow, sans-serif; font-size: 11px; letter-spacing: 0.18em; color: #8d979f; font-weight: 600;">PRODUCTS</span>
     </a>
-    <a href="Contact.dc.html" onClick="{{ closeMenu }}" style="display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 54px; margin-top: 16px; background: #ee6a1e; color: #ffffff; font-size: 16px; font-weight: 700; letter-spacing: 0.04em;">選型／詢價 <span style="font-family: Barlow, sans-serif;">→</span></a>
+    <a href="Contact.dc.html" onClick="{{ closeMenu }}" style="display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 54px; margin-top: 16px; background: #ee6a1e; color: #ffffff; font-size: 16px; font-weight: 700; letter-spacing: 0.04em;">選型／詢價</a>
   </nav>
   </sc-if>
 </header>
@@ -259,7 +261,7 @@
         <p style="margin: 0 0 6px; font-size: 16px; line-height: 2.05; color: #d5dbdf;">不用先找好型號。</p>
         <p style="margin: 0 0 6px; font-size: 16px; line-height: 2.05; color: #d5dbdf;">把設備條件、現有規格或圖面傳給我們，</p>
         <p style="margin: 0 0 32px; font-size: 16px; line-height: 2.05; color: #d5dbdf;">從需求開始一起確認。</p>
-        <a href="Contact.dc.html" style="display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 60px; margin-bottom: 18px; padding: 0 36px; background: #ee6a1e; color: #ffffff; font-size: 17px; font-weight: 700; letter-spacing: 0.06em;" style-hover="background:#ffffff;color:#10406e;transform:scale(1.05)">填需求，請協助選型 <span style="font-family: Barlow, sans-serif;">→</span></a>
+        <a href="Contact.dc.html" style="display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 60px; margin-bottom: 18px; padding: 0 36px; background: #ee6a1e; color: #ffffff; font-size: 17px; font-weight: 700; letter-spacing: 0.06em;" style-hover="background:#ffffff;color:#10406e;transform:scale(1.05)">填需求，請協助選型</a>
         <p style="margin: 0; font-family: Barlow, sans-serif; font-size: 15px; color: #d5dbdf; letter-spacing: 0.04em;">sales@motionlink.com.tw ／ 04-2297-1930</p>
       </div>
     </div>

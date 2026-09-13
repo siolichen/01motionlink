@@ -23,6 +23,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&amp;family=Barlow:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
 <style>
+  /* ml-mobile-width */
+  @media (max-width: 640px) { main div, main p, main h1, main h2, main h3, main form, main fieldset { max-width: none; } }
   /* ml-br-guard */
   @media (max-width: 640px) { h1 br, h2 br, h3 br, p br { display: none; } h1, h2, h3, p, li { text-wrap: pretty; word-break: normal; line-break: strict; } }
   /* ml-overflow-guard */
@@ -153,7 +155,7 @@
       <span style="font-size: 17px; font-weight: 700;">產品</span>
       <span style="font-family: Barlow, sans-serif; font-size: 11px; letter-spacing: 0.18em; color: #8d979f; font-weight: 600;">PRODUCTS</span>
     </a>
-    <a href="Contact.dc.html" onClick="{{ closeMenu }}" style="display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 54px; margin-top: 16px; background: #ee6a1e; color: #ffffff; font-size: 16px; font-weight: 700; letter-spacing: 0.04em;">選型／詢價 <span style="font-family: Barlow, sans-serif;">→</span></a>
+    <a href="Contact.dc.html" onClick="{{ closeMenu }}" style="display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 54px; margin-top: 16px; background: #ee6a1e; color: #ffffff; font-size: 16px; font-weight: 700; letter-spacing: 0.04em;">選型／詢價</a>
   </nav>
   </sc-if>
 </header>
@@ -176,7 +178,7 @@
         <p data-reveal="4" style="margin: 0 0 6px; font-size: clamp(15px, 1.5vw, 18px); line-height: 2; color: #e3e7ea;">從新機開發到既有型號替換，</p>
         <p data-reveal="5" style="margin: 0 0 6px; font-size: clamp(15px, 1.5vw, 18px); line-height: 2; color: #e3e7ea;">依功率、轉速、扭矩與設備條件協助選型，</p>
         <p data-reveal="6" style="margin: 0 0 40px; font-size: clamp(15px, 1.5vw, 18px); line-height: 2; color: #e3e7ea;">整合值得信賴的自動化品牌與穩定供應。</p>
-        <a data-reveal="7" href="#contact" style="display: inline-flex; align-items: center; gap: 12px; min-height: 56px; padding: 0 32px; background: #ee6a1e; color: #ffffff; font-size: 16px; font-weight: 700; letter-spacing: 0.06em;" style-hover="background:#ffffff;color:#10406e;transform:scale(1.05)">填需求，協助我選型 <span style="font-family: Barlow, sans-serif;">→</span></a>
+        <a data-reveal="7" href="#contact" style="display: inline-flex; align-items: center; gap: 12px; min-height: 56px; padding: 0 32px; background: #ee6a1e; color: #ffffff; font-size: 16px; font-weight: 700; letter-spacing: 0.06em;" style-hover="background:#ffffff;color:#10406e;transform:scale(1.05)">填需求，協助我選型</a>
       </div>
     </div>
   </section>
@@ -196,7 +198,7 @@
             <h3 style="margin: 0; font-size: clamp(21px, 2.1vw, 27px); font-weight: 700; line-height: 1.45; letter-spacing: 0.01em;">動力輸出，穩定而精準</h3>
             <p style="margin: 0; font-size: 15px; line-height: 1.95; color: #4a555e;">高精度定位與穩定控制，適用於自動化設備、包裝機械與精密機械。</p>
             <p style="margin: 0; font-family: Barlow, sans-serif; font-size: 12px; letter-spacing: 0.2em; color: #8d979f; font-weight: 600;">SERVO MOTORS</p>
-            <a href="Products.dc.html#servo-motors" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 46px; margin-top: auto; padding: 0 26px; border: 1px solid #ee6a1e; color: #ee6a1e; font-size: 15px; font-weight: 700; letter-spacing: 0.04em;" style-hover="background:#ee6a1e;color:#ffffff;transform:scale(1.05)">查看產品 <span style="font-family: Barlow, sans-serif;">→</span></a>
+            <a href="Products.dc.html#servo-motors" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 46px; margin-top: auto; padding: 0 26px; border: 1px solid #ee6a1e; color: #ee6a1e; font-size: 15px; font-weight: 700; letter-spacing: 0.04em;" style-hover="background:#ee6a1e;color:#ffffff;transform:scale(1.05)">查看產品</a>
           </div>
         </article>
         <article data-reveal="6" style="display: flex; flex-direction: column; height: 100%;">
@@ -206,7 +208,7 @@
             <h3 style="margin: 0; font-size: clamp(21px, 2.1vw, 27px); font-weight: 700; line-height: 1.45; letter-spacing: 0.01em;">轉速與扭矩，配到剛好</h3>
             <p style="margin: 0; font-size: 15px; line-height: 1.95; color: #4a555e;">從設備需要的轉速、扭矩與精度出發，選擇適合的減速比與安裝形式。</p>
             <p style="margin: 0; font-family: Barlow, sans-serif; font-size: 12px; letter-spacing: 0.2em; color: #8d979f; font-weight: 600;">PRECISION GEARBOXES</p>
-            <a href="Products.dc.html#gearboxes" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 46px; margin-top: auto; padding: 0 26px; border: 1px solid #ee6a1e; color: #ee6a1e; font-size: 15px; font-weight: 700; letter-spacing: 0.04em;" style-hover="background:#ee6a1e;color:#ffffff;transform:scale(1.05)">查看產品 <span style="font-family: Barlow, sans-serif;">→</span></a>
+            <a href="Products.dc.html#gearboxes" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 46px; margin-top: auto; padding: 0 26px; border: 1px solid #ee6a1e; color: #ee6a1e; font-size: 15px; font-weight: 700; letter-spacing: 0.04em;" style-hover="background:#ee6a1e;color:#ffffff;transform:scale(1.05)">查看產品</a>
           </div>
         </article>
         <article data-reveal="7" style="display: flex; flex-direction: column; height: 100%;">
@@ -216,7 +218,7 @@
             <h3 style="margin: 0; font-size: clamp(21px, 2.1vw, 27px); font-weight: 700; line-height: 1.45; letter-spacing: 0.01em;">控制訊號，順利對接</h3>
             <p style="margin: 0; font-size: 15px; line-height: 1.95; color: #4a555e;">搭配不同控制需求與馬達規格，提供完整的驅動控制選擇。</p>
             <p style="margin: 0; font-family: Barlow, sans-serif; font-size: 12px; letter-spacing: 0.2em; color: #8d979f; font-weight: 600;">SERVO DRIVES</p>
-            <a href="Products.dc.html#servo-drives" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 46px; margin-top: auto; padding: 0 26px; border: 1px solid #ee6a1e; color: #ee6a1e; font-size: 15px; font-weight: 700; letter-spacing: 0.04em;" style-hover="background:#ee6a1e;color:#ffffff;transform:scale(1.05)">查看產品 <span style="font-family: Barlow, sans-serif;">→</span></a>
+            <a href="Products.dc.html#servo-drives" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 46px; margin-top: auto; padding: 0 26px; border: 1px solid #ee6a1e; color: #ee6a1e; font-size: 15px; font-weight: 700; letter-spacing: 0.04em;" style-hover="background:#ee6a1e;color:#ffffff;transform:scale(1.05)">查看產品</a>
           </div>
         </article>
       </div>
@@ -234,7 +236,7 @@
         <p style="margin: 0 0 6px; font-size: 16px; line-height: 2.05; color: #4a555e;">你不需要先把所有型號研究完。</p>
         <p style="margin: 0 0 6px; font-size: 16px; line-height: 2.05; color: #4a555e;">提供設備條件、圖面或目前使用的型號，</p>
         <p style="margin: 0 0 38px; font-size: 16px; line-height: 2.05; color: #4a555e;">我們協助你縮小選擇、確認規格與搭配。</p>
-        <a href="#contact" style="display: inline-flex; align-items: center; gap: 12px; min-height: 54px; padding: 0 30px; background: #12181d; color: #ffffff; font-size: 16px; font-weight: 700; letter-spacing: 0.06em;" style-hover="background:#ee6a1e;transform:scale(1.05)">填需求，協助我選型 <span style="font-family: Barlow, sans-serif;">→</span></a>
+        <a href="#contact" style="display: inline-flex; align-items: center; gap: 12px; min-height: 54px; padding: 0 30px; background: #12181d; color: #ffffff; font-size: 16px; font-weight: 700; letter-spacing: 0.06em;" style-hover="background:#ee6a1e;transform:scale(1.05)">填需求，協助我選型</a>
       </div>
       <img src="assets/selection-support.webp" alt="工程師以卡尺量測減速機規格" width="1600" height="900" style="width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover;" />
     </div>
@@ -265,7 +267,7 @@
         </article>
       </div>
 
-      <a href="Brands.dc.html#top" style="display: inline-flex; align-items: center; gap: 10px; margin-top: clamp(32px, 4vw, 48px); min-height: 48px; font-size: 16px; font-weight: 700; border-bottom: 2px solid #ee6a1e;" style-hover="color:#ee6a1e">查看代理品牌 <span style="font-family: Barlow, sans-serif;">→</span></a>
+      <a href="Brands.dc.html#top" style="display: inline-flex; align-items: center; gap: 10px; margin-top: clamp(32px, 4vw, 48px); min-height: 48px; font-size: 16px; font-weight: 700; border-bottom: 2px solid #ee6a1e;" style-hover="color:#ee6a1e">查看代理品牌</a>
     </div>
   </section>
 
@@ -365,8 +367,7 @@
         <p style="margin: 0 0 20px; font-size: clamp(17px, 1.8vw, 21px); font-weight: 700; color: #10406e; line-height: 1.6;">MOTION LINK｜動聯國際</p>
         <p style="margin: 0 0 18px; font-size: 16px; line-height: 2.05; color: #4a555e;">不確定怎麼選、原型號不好買、不想一家一家問，是我們最常收到的問題。</p>
         <p style="margin: 0 0 34px; font-size: 16px; line-height: 2.05; color: #4a555e;">提供負載、轉速、扭矩或設備圖面，我們協助縮小產品選擇；遇到交期過長、停產或供應問題，可依現有規格評估替代產品。馬達、減速機與驅動器一次確認，從選型、採購到後續使用，都找得到懂產品的人。</p>
-        <a href="Contact.dc.html" style="display: inline-flex; align-items: center; gap: 14px; min-height: 58px; padding: 0 30px 0 8px; border-radius: 999px; background: #ee6a1e; color: #ffffff; font-size: 16px; font-weight: 700; letter-spacing: 0.04em;" style-hover="background:#10406e;color:#ffffff;transform:scale(1.05)">
-          <span style="display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,0.16); font-family: Barlow, sans-serif; font-size: 18px;">↗</span>
+        <a href="Contact.dc.html" style="display: inline-flex; align-items: center; gap: 14px; min-height: 58px; padding: 0 32px; border-radius: 999px; background: #ee6a1e; color: #ffffff; font-size: 16px; font-weight: 700; letter-spacing: 0.04em;" style-hover="background:#10406e;color:#ffffff;transform:scale(1.05)">
           填需求，協助我選型
         </a>
       </div>
@@ -384,7 +385,7 @@
         <p style="margin: 0 0 24px; font-size: 16px; line-height: 2.05; color: #4a555e;">相較於把整本型錄交給客戶，我們更在意的是理解設備條件，再從合作品牌中找到真正適合的產品。</p>
         <p style="margin: 0 0 6px; font-size: 16px; line-height: 2.05; color: #4a555e;">從新設備開發、既有型號替換，到馬達與減速機搭配，</p>
         <p style="margin: 0 0 38px; font-size: 16px; line-height: 2.05; color: #4a555e;">讓工程師與採購少花一點時間找料，把時間留給設備本身。</p>
-        <a href="#contact" style="display: inline-flex; align-items: center; gap: 10px; min-height: 48px; font-size: 16px; font-weight: 700; border-bottom: 2px solid #ee6a1e;" style-hover="color:#ee6a1e">認識動聯 <span style="font-family: Barlow, sans-serif;">→</span></a>
+        <a href="#contact" style="display: inline-flex; align-items: center; gap: 10px; min-height: 48px; font-size: 16px; font-weight: 700; border-bottom: 2px solid #ee6a1e;" style-hover="color:#ee6a1e">認識動聯</a>
       </div>
     </div>
   </section>
@@ -397,7 +398,7 @@
         <h2 style="margin: 0 0 28px; font-size: clamp(24px, 3.4vw, 40px); line-height: 1.5; font-weight: 700; color: #ffffff; text-wrap: pretty;">有規格、有圖面，<br />甚至只有設備需求，都可以問。</h2>
         <p style="margin: 0 0 6px; font-size: 16px; line-height: 2.05; color: #d5dbdf;">告訴我們你正在找什麼。</p>
         <p style="margin: 0 0 32px; font-size: 16px; line-height: 2.05; color: #d5dbdf;">已有型號可以直接提供；還不知道型號，也可以從設備條件開始。</p>
-        <a href="Contact.dc.html" style="display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 60px; margin-bottom: 18px; padding: 0 36px; background: #ee6a1e; color: #ffffff; font-size: 17px; font-weight: 700; letter-spacing: 0.06em;" style-hover="background:#ffffff;color:#10406e;transform:scale(1.05)">填需求，協助我選型 <span style="font-family: Barlow, sans-serif;">→</span></a>
+        <a href="Contact.dc.html" style="display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 60px; margin-bottom: 18px; padding: 0 36px; background: #ee6a1e; color: #ffffff; font-size: 17px; font-weight: 700; letter-spacing: 0.06em;" style-hover="background:#ffffff;color:#10406e;transform:scale(1.05)">填需求，協助我選型</a>
         <p style="margin: 0; font-family: Barlow, sans-serif; font-size: 15px; color: #d5dbdf; letter-spacing: 0.04em;">sales@motionlink.com.tw ／ 04-2297-1930</p>
       </div>
     </div>
@@ -498,36 +499,19 @@ class Component extends DCLogic {
       Array.from(inner.children).forEach(c => this._whyOrig.kids.push(c.getAttribute('style') || ''));
     }
     const kids = Array.from(inner.children);
+    wrap.setAttribute('style', this._whyOrig.wrap);
+    inner.setAttribute('style', this._whyOrig.inner);
+    kids.forEach((c, i) => {
+      if (this._whyOrig.kids[i] != null) c.setAttribute('style', this._whyOrig.kids[i]);
+      const n = c.querySelector('[data-reveal="node"]');
+      if (n) { n.style.width = stack ? 'min(34vw, 170px)' : ''; n.style.textAlign = ''; }
+      c.style.display = '';
+    });
+    if (stack) wrap.style.padding = '10% 18% 32% 18%';
     const grid = wrap.parentElement;
     if (grid) grid.style.gridTemplateColumns = stack ? 'minmax(0, 1fr)' : 'repeat(auto-fit, minmax(320px, 1fr))';
-    if (!stack) {
-      wrap.setAttribute('style', this._whyOrig.wrap);
-      inner.setAttribute('style', this._whyOrig.inner);
-      kids.forEach((c, i) => {
-        if (this._whyOrig.kids[i] != null) c.setAttribute('style', this._whyOrig.kids[i]);
-        const n = c.querySelector('[data-reveal="node"]');
-        if (n) { n.style.width = ''; n.style.textAlign = ''; }
-      });
-      return;
-    }
-    wrap.setAttribute('style', 'position: relative; width: 100%; padding: 0;');
-    inner.setAttribute('style', 'position: static; display: grid; grid-template-columns: 1fr 1fr; gap: 30px 16px; width: 100%;');
-    kids.forEach(c => {
-      const isPhoto = c.getAttribute('data-reveal') === 'photo';
-      const n = c.querySelector('[data-reveal="node"]');
-      if (isPhoto) {
-        c.setAttribute('style', 'position: static; grid-column: 1 / -1; width: min(74vw, 300px); margin: 0 auto 10px; aspect-ratio: 1 / 1; border-radius: 50%; overflow: hidden;');
-        const im = c.querySelector('img');
-        if (im) { im.style.width = '100%'; im.style.height = '100%'; im.style.objectFit = 'cover'; }
-      } else if (n) {
-        c.setAttribute('style', 'position: static; display: block; width: 100%;');
-        n.style.width = '100%';
-        n.style.textAlign = 'center';
-        n.style.alignItems = 'center';
-      } else {
-        c.style.display = 'none';
-      }
-    });
+    const sec = wrap.closest ? wrap.closest('section') : null;
+    if (sec) sec.style.overflowX = 'hidden';
   }
   _initReveal() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;

@@ -23,6 +23,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&amp;family=Barlow:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
 <style>
+  /* ml-mobile-width */
+  @media (max-width: 640px) { main div, main p, main h1, main h2, main h3, main form, main fieldset { max-width: none; } }
   /* ml-br-guard */
   @media (max-width: 640px) { h1 br, h2 br, h3 br, p br { display: none; } h1, h2, h3, p, li { text-wrap: pretty; word-break: normal; line-break: strict; } }
   /* ml-overflow-guard */
@@ -133,7 +135,7 @@
       <span style="font-size: 17px; font-weight: 700; color: #10406e;">產品</span>
       <span style="font-family: Barlow, sans-serif; font-size: 11px; letter-spacing: 0.18em; color: #8d979f; font-weight: 600;">PRODUCTS</span>
     </a>
-    <a href="Contact.dc.html" onClick="{{ closeMenu }}" style="display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 54px; margin-top: 16px; background: #ee6a1e; color: #ffffff; font-size: 16px; font-weight: 700; letter-spacing: 0.04em;">選型／詢價 <span style="font-family: Barlow, sans-serif;">→</span></a>
+    <a href="Contact.dc.html" onClick="{{ closeMenu }}" style="display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 54px; margin-top: 16px; background: #ee6a1e; color: #ffffff; font-size: 16px; font-weight: 700; letter-spacing: 0.04em;">選型／詢價</a>
   </nav>
   </sc-if>
 </header>
@@ -218,8 +220,12 @@
             </div>
           </div>
           </sc-if>
-          <button type="button" onClick="{{ g0prev }}" aria-label="上一個產品" style="position: absolute; top: 32%; left: 10px; transform: translateY(-50%); display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border: 1px solid #d6dbdf; border-radius: 50%; background: #ffffff; font-family: Barlow, sans-serif; font-size: 15px; color: #10406e; cursor: pointer; z-index: 2;" style-hover="background:#ee6a1e;color:#ffffff;border-color:#ee6a1e">←</button>
-          <button type="button" onClick="{{ g0next }}" aria-label="下一個產品" style="position: absolute; top: 32%; right: 10px; transform: translateY(-50%); display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border: 1px solid #d6dbdf; border-radius: 50%; background: #ffffff; font-family: Barlow, sans-serif; font-size: 15px; color: #10406e; cursor: pointer; z-index: 2;" style-hover="background:#ee6a1e;color:#ffffff;border-color:#ee6a1e">→</button>
+          <sc-if value="{{ g0hasPrev }}" hint-placeholder-val="{{ true }}">
+          <button type="button" onClick="{{ g0prev }}" aria-label="上一個產品" style="position: absolute; top: 32%; transform: translateY(-50%); display: flex; align-items: center; justify-content: center; width: 26px; height: 44px; border: none; background: none; font-family: Barlow, sans-serif; font-size: 26px; line-height: 1; color: #10406e; cursor: pointer; z-index: 2; left: 2px;" style-hover="color:#ee6a1e">&lt;</button>
+          </sc-if>
+          <sc-if value="{{ g0hasNext }}" hint-placeholder-val="{{ true }}">
+          <button type="button" onClick="{{ g0next }}" aria-label="下一個產品" style="position: absolute; top: 32%; transform: translateY(-50%); display: flex; align-items: center; justify-content: center; width: 26px; height: 44px; border: none; background: none; font-family: Barlow, sans-serif; font-size: 26px; line-height: 1; color: #10406e; cursor: pointer; z-index: 2; right: 2px;" style-hover="color:#ee6a1e">&gt;</button>
+          </sc-if>
         </div>
         <div id="ml-motors-txt" data-reveal="0b" data-reveal-dir="right">
           <p style="margin: 0 0 10px; font-family: Barlow, sans-serif; font-size: 13px; letter-spacing: 0.24em; color: #ee6a1e; font-weight: 600;">PRODUCT 01</p>
@@ -235,7 +241,7 @@
           </div>
           <p style="margin: clamp(26px, 3vw, 34px) 0 8px; font-size: 14px; font-weight: 700; letter-spacing: 0.1em; color: #10406e;">常見應用</p>
           <p style="margin: 0; font-size: 16px; line-height: 1.9; color: #4a555e;">自動化設備｜包裝機械｜機器人｜精密設備</p>
-          <a href="mailto:sales@motionlink.com.tw?subject=%E7%B4%A2%E5%8F%96%E4%BC%BA%E6%9C%8D%E9%A6%AC%E9%81%94%E5%9E%8B%E9%8C%84" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; margin-top: clamp(28px, 3.2vw, 38px); padding: 0 30px; background: #10406e; color: #ffffff; font-size: 15px; font-weight: 700; letter-spacing: 0.04em;" style-hover="background:#ee6a1e;color:#ffffff;transform:scale(1.05)">索取伺服馬達型錄 <span style="font-family: Barlow, sans-serif;">→</span></a>
+          <a href="mailto:sales@motionlink.com.tw?subject=%E7%B4%A2%E5%8F%96%E4%BC%BA%E6%9C%8D%E9%A6%AC%E9%81%94%E5%9E%8B%E9%8C%84" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; margin-top: clamp(28px, 3.2vw, 38px); padding: 0 30px; background: #10406e; color: #ffffff; font-size: 15px; font-weight: 700; letter-spacing: 0.04em;" style-hover="background:#ee6a1e;color:#ffffff;transform:scale(1.05)">索取伺服馬達型錄</a>
         </div>
       </div>
     </div>
@@ -299,8 +305,12 @@
             </div>
           </div>
           </sc-if>
-          <button type="button" onClick="{{ g1prev }}" aria-label="上一個產品" style="position: absolute; top: 32%; left: 10px; transform: translateY(-50%); display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border: 1px solid #d6dbdf; border-radius: 50%; background: #ffffff; font-family: Barlow, sans-serif; font-size: 15px; color: #10406e; cursor: pointer; z-index: 2;" style-hover="background:#ee6a1e;color:#ffffff;border-color:#ee6a1e">←</button>
-          <button type="button" onClick="{{ g1next }}" aria-label="下一個產品" style="position: absolute; top: 32%; right: 10px; transform: translateY(-50%); display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border: 1px solid #d6dbdf; border-radius: 50%; background: #ffffff; font-family: Barlow, sans-serif; font-size: 15px; color: #10406e; cursor: pointer; z-index: 2;" style-hover="background:#ee6a1e;color:#ffffff;border-color:#ee6a1e">→</button>
+          <sc-if value="{{ g1hasPrev }}" hint-placeholder-val="{{ true }}">
+          <button type="button" onClick="{{ g1prev }}" aria-label="上一個產品" style="position: absolute; top: 32%; transform: translateY(-50%); display: flex; align-items: center; justify-content: center; width: 26px; height: 44px; border: none; background: none; font-family: Barlow, sans-serif; font-size: 26px; line-height: 1; color: #10406e; cursor: pointer; z-index: 2; left: 2px;" style-hover="color:#ee6a1e">&lt;</button>
+          </sc-if>
+          <sc-if value="{{ g1hasNext }}" hint-placeholder-val="{{ true }}">
+          <button type="button" onClick="{{ g1next }}" aria-label="下一個產品" style="position: absolute; top: 32%; transform: translateY(-50%); display: flex; align-items: center; justify-content: center; width: 26px; height: 44px; border: none; background: none; font-family: Barlow, sans-serif; font-size: 26px; line-height: 1; color: #10406e; cursor: pointer; z-index: 2; right: 2px;" style-hover="color:#ee6a1e">&gt;</button>
+          </sc-if>
         </div>
         <div id="ml-gears-txt" data-reveal="1b" data-reveal-dir="left">
           <p style="margin: 0 0 10px; font-family: Barlow, sans-serif; font-size: 13px; letter-spacing: 0.24em; color: #ee6a1e; font-weight: 600;">PRODUCT 02</p>
@@ -317,7 +327,7 @@
           </div>
           <p style="margin: clamp(26px, 3vw, 34px) 0 8px; font-size: 14px; font-weight: 700; letter-spacing: 0.1em; color: #10406e;">常見應用</p>
           <p style="margin: 0; font-size: 16px; line-height: 1.9; color: #4a555e;">機械手臂｜旋轉平台｜輸送設備｜精密定位機構</p>
-          <a href="mailto:sales@motionlink.com.tw?subject=%E7%B4%A2%E5%8F%96%E7%B2%BE%E5%AF%86%E6%B8%9B%E9%80%9F%E6%A9%9F%E5%9E%8B%E9%8C%84" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; margin-top: clamp(28px, 3.2vw, 38px); padding: 0 30px; background: #10406e; color: #ffffff; font-size: 15px; font-weight: 700; letter-spacing: 0.04em;" style-hover="background:#ee6a1e;color:#ffffff;transform:scale(1.05)">索取精密減速機型錄 <span style="font-family: Barlow, sans-serif;">→</span></a>
+          <a href="mailto:sales@motionlink.com.tw?subject=%E7%B4%A2%E5%8F%96%E7%B2%BE%E5%AF%86%E6%B8%9B%E9%80%9F%E6%A9%9F%E5%9E%8B%E9%8C%84" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; margin-top: clamp(28px, 3.2vw, 38px); padding: 0 30px; background: #10406e; color: #ffffff; font-size: 15px; font-weight: 700; letter-spacing: 0.04em;" style-hover="background:#ee6a1e;color:#ffffff;transform:scale(1.05)">索取精密減速機型錄</a>
         </div>
       </div>
     </div>
@@ -381,8 +391,12 @@
             </div>
           </div>
           </sc-if>
-          <button type="button" onClick="{{ g2prev }}" aria-label="上一個產品" style="position: absolute; top: 32%; left: 10px; transform: translateY(-50%); display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border: 1px solid #d6dbdf; border-radius: 50%; background: #ffffff; font-family: Barlow, sans-serif; font-size: 15px; color: #10406e; cursor: pointer; z-index: 2;" style-hover="background:#ee6a1e;color:#ffffff;border-color:#ee6a1e">←</button>
-          <button type="button" onClick="{{ g2next }}" aria-label="下一個產品" style="position: absolute; top: 32%; right: 10px; transform: translateY(-50%); display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border: 1px solid #d6dbdf; border-radius: 50%; background: #ffffff; font-family: Barlow, sans-serif; font-size: 15px; color: #10406e; cursor: pointer; z-index: 2;" style-hover="background:#ee6a1e;color:#ffffff;border-color:#ee6a1e">→</button>
+          <sc-if value="{{ g2hasPrev }}" hint-placeholder-val="{{ true }}">
+          <button type="button" onClick="{{ g2prev }}" aria-label="上一個產品" style="position: absolute; top: 32%; transform: translateY(-50%); display: flex; align-items: center; justify-content: center; width: 26px; height: 44px; border: none; background: none; font-family: Barlow, sans-serif; font-size: 26px; line-height: 1; color: #10406e; cursor: pointer; z-index: 2; left: 2px;" style-hover="color:#ee6a1e">&lt;</button>
+          </sc-if>
+          <sc-if value="{{ g2hasNext }}" hint-placeholder-val="{{ true }}">
+          <button type="button" onClick="{{ g2next }}" aria-label="下一個產品" style="position: absolute; top: 32%; transform: translateY(-50%); display: flex; align-items: center; justify-content: center; width: 26px; height: 44px; border: none; background: none; font-family: Barlow, sans-serif; font-size: 26px; line-height: 1; color: #10406e; cursor: pointer; z-index: 2; right: 2px;" style-hover="color:#ee6a1e">&gt;</button>
+          </sc-if>
         </div>
         <div id="ml-drives-txt" data-reveal="2b" data-reveal-dir="right">
           <p style="margin: 0 0 10px; font-family: Barlow, sans-serif; font-size: 13px; letter-spacing: 0.24em; color: #ee6a1e; font-weight: 600;">PRODUCT 03</p>
@@ -398,7 +412,7 @@
             <span style="display: inline-flex; align-items: center; min-height: 40px; padding: 0 18px; border: 1px solid #e4e7ea; background: #ffffff; font-family: Barlow, sans-serif; font-size: 15px; font-weight: 500; color: #12181d; white-space: nowrap; flex: none;">EtherCAT / Modbus / Pulse</span>
           </div>
 
-          <a href="mailto:sales@motionlink.com.tw?subject=%E7%B4%A2%E5%8F%96%E4%BC%BA%E6%9C%8D%E9%A9%85%E5%8B%95%E5%99%A8%E5%9E%8B%E9%8C%84" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; margin-top: clamp(28px, 3.2vw, 38px); padding: 0 30px; background: #10406e; color: #ffffff; font-size: 15px; font-weight: 700; letter-spacing: 0.04em;" style-hover="background:#ee6a1e;color:#ffffff;transform:scale(1.05)">索取伺服驅動器型錄 <span style="font-family: Barlow, sans-serif;">→</span></a>
+          <a href="mailto:sales@motionlink.com.tw?subject=%E7%B4%A2%E5%8F%96%E4%BC%BA%E6%9C%8D%E9%A9%85%E5%8B%95%E5%99%A8%E5%9E%8B%E9%8C%84" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; margin-top: clamp(28px, 3.2vw, 38px); padding: 0 30px; background: #10406e; color: #ffffff; font-size: 15px; font-weight: 700; letter-spacing: 0.04em;" style-hover="background:#ee6a1e;color:#ffffff;transform:scale(1.05)">索取伺服驅動器型錄</a>
         </div>
       </div>
     </div>
@@ -421,7 +435,7 @@
         </div>
         <p style="margin: 0 0 6px; font-size: 16px; line-height: 2.05; color: #d5dbdf;">不需要每一項都有。</p>
         <p style="margin: 0 0 32px; font-size: 16px; line-height: 2.05; color: #d5dbdf;">我們會依現有資訊協助確認產品方向。</p>
-        <a href="Contact.dc.html" style="display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 60px; padding: 0 36px; background: #ee6a1e; color: #ffffff; font-size: 17px; font-weight: 700; letter-spacing: 0.06em;" style-hover="background:#ffffff;color:#10406e;transform:scale(1.05)">請協助我選型 <span style="font-family: Barlow, sans-serif;">→</span></a>
+        <a href="Contact.dc.html" style="display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 60px; padding: 0 36px; background: #ee6a1e; color: #ffffff; font-size: 17px; font-weight: 700; letter-spacing: 0.06em;" style-hover="background:#ffffff;color:#10406e;transform:scale(1.05)">請協助我選型</a>
       </div>
     </div>
   </section>
@@ -617,8 +631,10 @@ class Component extends DCLogic {
         out['g' + g + 's' + i] = cur === i;
         out['g' + g + 'go' + i] = ((gg, ii) => () => this.setState({ ['slide' + gg]: ii }))(g, i);
       }
-      out['g' + g + 'prev'] = ((gg) => () => this.setState(s => ({ ['slide' + gg]: ((s['slide' + gg] || 0) + 2) % 3 })))(g);
-      out['g' + g + 'next'] = ((gg) => () => this.setState(s => ({ ['slide' + gg]: ((s['slide' + gg] || 0) + 1) % 3 })))(g);
+      out['g' + g + 'prev'] = ((gg) => () => this.setState(s => ({ ['slide' + gg]: Math.max(0, (s['slide' + gg] || 0) - 1) })))(g);
+      out['g' + g + 'next'] = ((gg) => () => this.setState(s => ({ ['slide' + gg]: Math.min(2, (s['slide' + gg] || 0) + 1) })))(g);
+      out['g' + g + 'hasPrev'] = cur > 0;
+      out['g' + g + 'hasNext'] = cur < 2;
       out['g' + g + 'label'] = labels[g][cur] + '　0' + (cur + 1) + ' / 03';
     }
     return Object.assign(out, {
