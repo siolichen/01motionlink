@@ -23,6 +23,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&amp;family=Barlow:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
 <style>
+  /* ml-br-guard */
+  @media (max-width: 640px) { h1 br, h2 br, h3 br, p br { display: none; } h1, h2, h3, p, li { text-wrap: pretty; word-break: normal; line-break: strict; } }
   /* ml-overflow-guard */
   html, body { max-width: 100%; overflow-x: hidden; }
   main div, footer div, header div { min-width: 0; }
@@ -101,13 +103,13 @@
 </div>
 </sc-if>
 
-<header style="background: rgba(255,255,255,0.72); backdrop-filter: saturate(160%) blur(14px); border-bottom: 1px solid #e4e7ea;">
+<header style="background: #ffffff; border-bottom: 1px solid #e4e7ea;">
   <div style="max-width: 1320px; margin: 0 auto; padding: 5px clamp(16px, 4vw, 72px); display: flex; flex-wrap: nowrap; align-items: center; gap: 10px clamp(12px, 2.2vw, 30px);">
     <a href="#top" style="display: flex; align-items: center; gap: clamp(10px, 1.4vw, 18px); margin-right: auto; min-width: 0;">
       <span style="position: relative; display: block; flex: none; width: 177px; height: 46px; overflow: hidden;">
         <img src="assets/logo-motionlink.webp" alt="MOTION LINK 動聯國際有限公司 標誌" width="800" height="533" style="position: absolute; top: -46px; left: -21px; height: 142px; width: auto;" />
       </span>
-      <span style="display: block; border-left: 1px solid #e4e7ea; padding-left: clamp(10px, 1.4vw, 18px); font-size: clamp(11px, 1.05vw, 13px); line-height: 1.5; letter-spacing: 0.04em; color: #4a555e; font-weight: 500;">精密傳動 × 自動化元件專業代理</span>
+      
     </a>
     <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
     <nav style="display: flex; align-items: center; gap: clamp(26px, 4vw, 58px); white-space: nowrap; margin-left: auto; margin-right: clamp(14px, 2.4vw, 34px);">
@@ -422,7 +424,7 @@
       <a href="tel:+886422971930" style="color: #ffffff;" style-hover="color:#ee6a1e">04-2297-1930</a>
     </div>
   </div>
-  <div style="max-width: 1320px; margin: clamp(40px, 5vw, 64px) auto 0; padding-top: 24px; border-top: 1px solid #2b333a; font-family: Barlow, sans-serif; font-size: 13px; letter-spacing: 0.08em; color: #8d979f;">© 2026 MOTION LINK CO., LTD.</div>
+  <div style="max-width: 1320px; margin: clamp(40px, 5vw, 64px) auto 0; padding-top: 24px; border-top: 1px solid #2b333a; font-family: Barlow, sans-serif; font-size: 13px; letter-spacing: 0.08em; color: #8d979f;">© 2026 MOTION LINK CO., LTD.　本網站為模擬案例，內容僅供設計展示之用。</div>
 </footer>
 
 </x-dc>
@@ -496,20 +498,36 @@ class Component extends DCLogic {
       Array.from(inner.children).forEach(c => this._whyOrig.kids.push(c.getAttribute('style') || ''));
     }
     const kids = Array.from(inner.children);
-    // always keep the desktop orbit composition; only tighten scale on small screens
-    wrap.setAttribute('style', this._whyOrig.wrap);
-    inner.setAttribute('style', this._whyOrig.inner);
-    kids.forEach((c, i) => { if (this._whyOrig.kids[i] != null) c.setAttribute('style', this._whyOrig.kids[i]); });
-    if (stack) wrap.style.padding = '8% 16% 30% 16%';
-    kids.forEach(c => {
-      const n = c.querySelector('[data-reveal="node"]');
-      if (!n) return;
-      n.style.width = stack ? 'min(30vw, 150px)' : '';
-    });
     const grid = wrap.parentElement;
     if (grid) grid.style.gridTemplateColumns = stack ? 'minmax(0, 1fr)' : 'repeat(auto-fit, minmax(320px, 1fr))';
-    const sec = wrap.closest ? wrap.closest('section') : null;
-    if (sec) sec.style.overflowX = 'hidden';
+    if (!stack) {
+      wrap.setAttribute('style', this._whyOrig.wrap);
+      inner.setAttribute('style', this._whyOrig.inner);
+      kids.forEach((c, i) => {
+        if (this._whyOrig.kids[i] != null) c.setAttribute('style', this._whyOrig.kids[i]);
+        const n = c.querySelector('[data-reveal="node"]');
+        if (n) { n.style.width = ''; n.style.textAlign = ''; }
+      });
+      return;
+    }
+    wrap.setAttribute('style', 'position: relative; width: 100%; padding: 0;');
+    inner.setAttribute('style', 'position: static; display: grid; grid-template-columns: 1fr 1fr; gap: 30px 16px; width: 100%;');
+    kids.forEach(c => {
+      const isPhoto = c.getAttribute('data-reveal') === 'photo';
+      const n = c.querySelector('[data-reveal="node"]');
+      if (isPhoto) {
+        c.setAttribute('style', 'position: static; grid-column: 1 / -1; width: min(74vw, 300px); margin: 0 auto 10px; aspect-ratio: 1 / 1; border-radius: 50%; overflow: hidden;');
+        const im = c.querySelector('img');
+        if (im) { im.style.width = '100%'; im.style.height = '100%'; im.style.objectFit = 'cover'; }
+      } else if (n) {
+        c.setAttribute('style', 'position: static; display: block; width: 100%;');
+        n.style.width = '100%';
+        n.style.textAlign = 'center';
+        n.style.alignItems = 'center';
+      } else {
+        c.style.display = 'none';
+      }
+    });
   }
   _initReveal() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;

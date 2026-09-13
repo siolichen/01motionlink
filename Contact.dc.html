@@ -23,6 +23,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&amp;family=Barlow:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
 <style>
+  /* ml-br-guard */
+  @media (max-width: 640px) { h1 br, h2 br, h3 br, p br { display: none; } h1, h2, h3, p, li { text-wrap: pretty; word-break: normal; line-break: strict; } }
   /* ml-overflow-guard */
   html, body { max-width: 100%; overflow-x: hidden; }
   main div, footer div, header div { min-width: 0; }
@@ -86,13 +88,13 @@
   </div>
 </div>
 
-<header style="background: rgba(255,255,255,0.72); backdrop-filter: saturate(160%) blur(14px); border-bottom: 1px solid #e4e7ea;">
+<header style="background: #ffffff; border-bottom: 1px solid #e4e7ea;">
   <div style="max-width: 1320px; margin: 0 auto; padding: 5px clamp(16px, 4vw, 72px); display: flex; flex-wrap: nowrap; align-items: center; gap: 10px clamp(12px, 2.2vw, 30px);">
     <a href="index.html" style="display: flex; align-items: center; gap: clamp(10px, 1.4vw, 18px); margin-right: auto; min-width: 0;">
       <span style="position: relative; display: block; flex: none; width: 177px; height: 46px; overflow: hidden;">
         <img src="assets/logo-motionlink.webp" alt="MOTION LINK 動聯國際有限公司 標誌" width="800" height="533" style="position: absolute; top: -46px; left: -21px; height: 142px; width: auto;" />
       </span>
-      <span style="display: block; border-left: 1px solid #e4e7ea; padding-left: clamp(10px, 1.4vw, 18px); font-size: clamp(11px, 1.05vw, 13px); line-height: 1.5; letter-spacing: 0.04em; color: #4a555e; font-weight: 500;">精密傳動 × 自動化元件專業代理</span>
+      
     </a>
     <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
     <nav style="display: flex; align-items: center; gap: clamp(26px, 4vw, 58px); white-space: nowrap; margin-left: auto; margin-right: clamp(14px, 2.4vw, 34px);">
@@ -160,7 +162,7 @@
   </section>
 
   <section id="contact" data-screen-label="RFQ form" style="padding: clamp(56px, 8vw, 112px) clamp(20px, 5vw, 72px); background: #f4f6f7;">
-    <form style="max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(36px, 4.6vw, 60px);">
+    <form id="ml-rfq" onSubmit="{{ submitRfq }}" style="max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(36px, 4.6vw, 60px);">
 
       <fieldset data-reveal="a" style="margin: 0; padding: clamp(26px, 3vw, 40px); border: 1px solid #e4e7ea; background: #ffffff;">
         <legend style="padding: 0 10px; margin-left: -10px; font-size: clamp(20px, 2.2vw, 26px); font-weight: 700; color: #10406e;">你這次需要？</legend>
@@ -261,6 +263,7 @@
 
       <div data-reveal="f" style="display: flex; flex-direction: column; gap: 18px; align-items: flex-start;">
         <button type="submit" style="display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 62px; padding: 0 38px; border: none; background: #ee6a1e; color: #ffffff; font-family: inherit; font-size: 17px; font-weight: 700; letter-spacing: 0.06em; cursor: pointer;" style-hover="background:#10406e;color:#ffffff;transform:scale(1.05)">送出需求，請協助確認 <span style="font-family: Barlow, sans-serif;">→</span></button>
+        <p id="ml-rfq-sent" style="display: none; margin: 0; padding: 14px 18px; border-left: 3px solid #ee6a1e; background: #fff4ec; font-size: 16px; line-height: 1.9; color: #10406e;">已開啟郵件視窗，請確認內容後送出至 sales@motionlink.com.tw。若未自動開啟，請直接來信。</p>
         <p style="margin: 0; font-size: 16px; line-height: 2.05; color: #4a555e;">沒有完整規格也沒關係。</p>
         <p style="margin: 0; font-size: 16px; line-height: 2.05; color: #4a555e;">提供目前知道的資訊，我們會再和你確認。</p>
         <p style="margin: 6px 0 0; font-family: Barlow, sans-serif; font-size: 15px; letter-spacing: 0.04em; color: #7b868e;">或直接聯絡：<a href="mailto:sales@motionlink.com.tw" style="color: #10406e; font-weight: 600;" style-hover="color:#ee6a1e">sales@motionlink.com.tw</a> ／ <a href="tel:+886422971930" style="color: #10406e; font-weight: 600;" style-hover="color:#ee6a1e">04-2297-1930</a></p>
@@ -289,7 +292,7 @@
       <a href="tel:+886422971930" style="color: #ffffff;" style-hover="color:#ee6a1e">04-2297-1930</a>
     </div>
   </div>
-  <div style="max-width: 1320px; margin: clamp(40px, 5vw, 64px) auto 0; padding-top: 24px; border-top: 1px solid #2b333a; font-family: Barlow, sans-serif; font-size: 13px; letter-spacing: 0.08em; color: #8d979f;">© 2026 MOTION LINK CO., LTD.</div>
+  <div style="max-width: 1320px; margin: clamp(40px, 5vw, 64px) auto 0; padding-top: 24px; border-top: 1px solid #2b333a; font-family: Barlow, sans-serif; font-size: 13px; letter-spacing: 0.08em; color: #8d979f;">© 2026 MOTION LINK CO., LTD.　本網站為模擬案例，內容僅供設計展示之用。</div>
 </footer>
 
 </x-dc>
@@ -417,9 +420,45 @@ class Component extends DCLogic {
       window.removeEventListener('load', this._onResize);
     }
   }
+  _submitRfq = (e) => {
+    e.preventDefault();
+    const f = e.target;
+    const v = (n) => { const el = f.elements[n]; return el ? (el.value || '').trim() : ''; };
+    const r = (n) => { const el = f.elements[n]; if (!el) return ''; if (el.value !== undefined && !el.length) return el.value; return Array.from(el).filter(x => x.checked).map(x => x.value)[0] || ''; };
+    const files = f.elements['files'];
+    const fileNames = files && files.files ? Array.from(files.files).map(x => x.name) : [];
+    const lines = [
+      '需求類型：' + r('need'),
+      '',
+      '【聯絡資料】',
+      '姓名：' + v('name'),
+      '公司名稱：' + v('company'),
+      'Email：' + v('email'),
+      '電話：' + v('phone'),
+      '',
+      '【產品／設備需求】',
+      '品牌或現有型號：' + v('model'),
+      '需求數量：' + v('qty'),
+      '產品類型：' + r('category'),
+      '設備用途：' + v('usage'),
+      '已知規格：' + v('specs'),
+      '',
+      '【其他需求】',
+      v('notes'),
+      '',
+      '【附件】',
+      fileNames.length ? fileNames.join('、') + '（請於郵件中手動附加檔案）' : '無'
+    ];
+    const subject = '選型／詢價需求｜' + (v('company') || '') + '｜' + (v('name') || '');
+    const href = 'mailto:sales@motionlink.com.tw?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n'));
+    window.location.href = href;
+    const note = document.getElementById('ml-rfq-sent');
+    if (note) note.style.display = 'block';
+  };
   renderVals() {
     const isMobile = !!this.state.isMobile;
     return {
+      submitRfq: this._submitRfq,
       isMobile: isMobile,
       isDesktop: !isMobile,
       menuOpen: !!this.state.menuOpen,
