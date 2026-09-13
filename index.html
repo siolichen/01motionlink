@@ -23,6 +23,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&amp;family=Barlow:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
 <style>
+  /* ml-contact-stack */
+  @media (max-width: 900px) {
+    .ml-sep { display: none; }
+    .ml-nl { display: block; }
+  }
   /* ml-single-col */
   @media (max-width: 900px) {
     main div[style*="auto-fit"] { grid-template-columns: minmax(0, 1fr) !important; align-items: start !important; }
@@ -321,7 +326,7 @@
   <section data-screen-label="Why Motion Link" style="padding: clamp(64px, 9vw, 128px) clamp(20px, 5vw, 72px); background: #ffffff;">
     <div style="max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(40px, 5vw, 80px); align-items: center;">
 
-      <div id="ml-why-graphic" style="padding: 20% 4% 12% 12%;">
+      <div id="ml-why-graphic" style="padding: 30% 2% 10% 6%;">
         <div style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
           <div style="position: absolute; top: -15%; left: 9%; width: 104%; height: 104%; border-radius: 50%; border: 1px solid #e8ebed;"></div>
           <div style="position: absolute; top: -15%; left: 9%; width: 104%; height: 104%; border-radius: 50%; border: 1px dashed #cdd5da; animation: ml-orbit 70s linear infinite;"></div>
@@ -406,7 +411,7 @@
         <h2 style="margin: 0 0 28px; font-size: clamp(24px, 3.4vw, 40px); line-height: 1.5; font-weight: 700; color: #ffffff; text-wrap: pretty;">有規格、有圖面，<br />甚至只有設備需求，都可以問。</h2>
         <p style="margin: 0 0 32px; font-size: 16px; line-height: 2.05; color: #d5dbdf;">告訴我們你正在找什麼。<br />已有型號可以直接提供；還不知道型號，也可以從設備條件開始。</p>
         <a href="Contact.dc.html" style="display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 60px; margin-bottom: 18px; padding: 0 36px; background: #ee6a1e; color: #ffffff; font-size: 17px; font-weight: 700; letter-spacing: 0.06em;" style-hover="background:#ffffff;color:#10406e;transform:scale(1.05)">填需求，協助我選型</a>
-        <p style="margin: 0; font-family: Barlow, sans-serif; font-size: 15px; color: #d5dbdf; letter-spacing: 0.04em;">sales@motionlink.com.tw ／ 04-2297-1930</p>
+        <p style="margin: 0; font-family: Barlow, sans-serif; font-size: 15px; color: #d5dbdf; letter-spacing: 0.04em;">sales@motionlink.com.tw<span class="ml-sep"> ／ </span><span class="ml-nl">04-2297-1930</span></p>
       </div>
     </div>
   </section>
@@ -527,7 +532,7 @@ class Component extends DCLogic {
     kids.forEach(c => {
       const n = c.querySelector('[data-reveal="node"]');
       if (!n) return;
-      n.style.width = '118px';
+      n.style.width = '104px';
       const ic = n.querySelector('span');
       if (ic) { ic.style.width = '72px'; ic.style.height = '72px'; }
       const ps = n.querySelectorAll('p');
