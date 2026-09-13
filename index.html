@@ -38,12 +38,11 @@
   @media (max-width: 900px) {
     #ml-why-graphic, #ml-why-graphic * { max-width: none; min-width: auto; overflow-wrap: normal; }
   }
-  /* ml-br-guard */
-  @media (max-width: 640px) { h1 br, h2 br, h3 br, p br { display: none; } h1, h2, h3, p, li { text-wrap: pretty; word-break: normal; line-break: strict; } }
   /* ml-overflow-guard */
   html, body { max-width: 100%; overflow-x: hidden; }
   main div, footer div, header div { min-width: 0; }
   p, h1, h2, h3, li, label, legend { overflow-wrap: break-word; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body { margin: 0; background: #ffffff; color: #12181d; font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif; -webkit-font-smoothing: antialiased; }
   * { box-sizing: border-box; }
   img { display: block; max-width: 100%; }
@@ -318,7 +317,7 @@
   <section data-screen-label="Why Motion Link" style="padding: clamp(64px, 9vw, 128px) clamp(20px, 5vw, 72px); background: #ffffff;">
     <div style="max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(40px, 5vw, 80px); align-items: center;">
 
-      <div id="ml-why-graphic" style="padding: 4% 6% 26% 14%;">
+      <div id="ml-why-graphic" style="padding: 13% 6% 17% 14%;">
         <div style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
           <div style="position: absolute; top: -15%; left: 9%; width: 104%; height: 104%; border-radius: 50%; border: 1px solid #e8ebed;"></div>
           <div style="position: absolute; top: -15%; left: 9%; width: 104%; height: 104%; border-radius: 50%; border: 1px dashed #cdd5da; animation: ml-orbit 70s linear infinite;"></div>
@@ -476,6 +475,10 @@ class Component extends DCLogic {
     this._onResize = () => { applyMobile(); sync(); };
     applyMobile();
     window.addEventListener('resize', this._onResize);
+    window.addEventListener('orientationchange', this._onResize);
+    window.addEventListener('pageshow', this._onResize);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => this._onResize());
+    [300, 900, 1800].forEach(t => setTimeout(() => this._onResize(), t));
     this._mq.addEventListener('change', applyMobile);
     this._ro.observe(document.documentElement);
     [0, 60, 150, 400, 900, 1500, 2500].forEach(t => setTimeout(this._onResize, t));
@@ -542,11 +545,21 @@ class Component extends DCLogic {
       maxR = Math.max(maxR, r.right - wr.left);
     });
     const contentW = maxR - minL;
+    let maxB = 0;
+    kids.forEach(c => {
+      const n = c.querySelector('[data-reveal="node"]');
+      const el = n || c;
+      const r = el.getBoundingClientRect();
+      if (!r.width) return;
+      maxB = Math.max(maxB, r.bottom - wr.top);
+    });
     const natural = wrap.offsetHeight;
     const k = Math.min(1, avail / contentW);
+    const offX = (avail - contentW * k) / 2 - minL * k;
     wrap.style.transformOrigin = 'top left';
-    wrap.style.transform = 'scale(' + k + ') translateX(' + (-minL) + 'px)';
-    wrap.style.marginBottom = (-(natural * (1 - k))) + 'px';
+    wrap.style.transform = 'translateX(' + offX + 'px) scale(' + k + ')';
+    const usedH = (maxB || natural) * k + 8;
+    wrap.style.marginBottom = (usedH - natural) + 'px';
   }
   _initReveal() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
